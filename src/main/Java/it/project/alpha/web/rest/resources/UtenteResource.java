@@ -9,6 +9,7 @@ import it.project.alpha.web.dto.WSOutput.WsOutputDTO;
 import it.project.alpha.web.dto.utente.UtenteDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -18,6 +19,8 @@ import java.util.stream.Collectors;
 
 @Component
 @Path("/utente")
+@CrossOrigin
+
 public class UtenteResource {
 
 
@@ -151,6 +154,7 @@ public class UtenteResource {
 
         wsOutputDTO.setStatus(true);
         wsOutputDTO.setObj(output);
+
 
         return Response.status(200).entity(wsOutputDTO).build();
     }
