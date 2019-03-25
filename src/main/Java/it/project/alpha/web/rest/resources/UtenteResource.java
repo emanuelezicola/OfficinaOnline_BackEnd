@@ -147,13 +147,15 @@ public class UtenteResource {
         if(user == null) {
             wsOutputDTO.setStatus(Boolean.FALSE);
             wsOutputDTO.setObj("Nessun utente trovato con le credenziali fornite!");
-            return Response.status(Response.Status.NOT_FOUND).entity(wsOutputDTO).build();
+            wsOutputDTO.setMessage(Response.Status.NOT_FOUND.toString());
+            return Response.status(Response.Status.OK).entity(wsOutputDTO).build();
         }
         UtenteDTO output = new UtenteDTO();
         output.createDTO(user);
 
         wsOutputDTO.setStatus(true);
         wsOutputDTO.setObj(output);
+
 
 
         return Response.status(200).entity(wsOutputDTO).build();
