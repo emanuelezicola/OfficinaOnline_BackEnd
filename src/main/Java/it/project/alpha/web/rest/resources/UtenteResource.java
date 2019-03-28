@@ -130,16 +130,16 @@ public class UtenteResource {
     public Response login(UtenteDTO utenteDTO){
 
         if(utenteDTO==null){
-            wsOutputDTO.setStatus(false);
-            wsOutputDTO.setMessage("Errore");
-            return Response.status(Response.Status.BAD_REQUEST).entity(wsOutputDTO).build();
+            wsOutputDTO.setStatus(Boolean.FALSE);
+            wsOutputDTO.setMessage("Non sono stati forniti correttamente i dati!");
+            return Response.status(Response.Status.OK).entity(wsOutputDTO).build();
         }
 
         Map<String, String> errors = utenteDTO.validateForLogin();
         if(!errors.isEmpty()){
-            wsOutputDTO.setStatus(false);
+            wsOutputDTO.setStatus(Boolean.FALSE);
             wsOutputDTO.setObj(errors);
-            return Response.status(Response.Status.BAD_REQUEST).entity(wsOutputDTO).build();
+            return Response.status(Response.Status.OK).entity(wsOutputDTO).build();
         }
 
         Utente user = utenteService.eseguiAccesso(utenteDTO.getEmail(), utenteDTO.getPassword());
